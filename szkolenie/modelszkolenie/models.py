@@ -14,6 +14,9 @@ class Company(models.Model):
 
     class Meta: 
         verbose_name_plural = "Firma"
+    
+    def __str__(self):
+        return self.nazwa
 
 class Language(models.TextChoices):
     ENGLISH = 'EN', _('English')
@@ -40,7 +43,8 @@ class User(models.Model):
         blank=True, null=True,
     )
 
-
+    def __str__(self):
+        return self.imie + " " + self.nazwisko
 
     class Meta:
         verbose_name_plural="Gość"
@@ -49,7 +53,7 @@ class Training(models.Model):
     nazwa = models.CharField(max_length=255)
     poczatek = models.DateField(blank=True, null=True)
    
-    duration = models.DurationField(datetime.timedelta(days=1))
+    czas = models.DurationField(datetime.timedelta(days=1),name="czas")
     obraz = models.ImageField(upload_to="images/szkolenie")
     
     jezyk = models.CharField(
@@ -58,13 +62,17 @@ class Training(models.Model):
         blank=True,
         null=True
     )
-    listCustomers = models.ManyToManyField(User)
+    uczestnicy = models.ManyToManyField(User, blank=True)
 
     class Meta:
         verbose_name_plural="Szkolenie"
-    @property
+
+    def __str__(self):
+        return self.nazwa
+
     def expiration_date(self):
-        return (self.poczatek + self.duration)
+        print(self.poczatek + self.czas)
+        return (self.poczatek + self.czas)
     
 
 
@@ -92,6 +100,8 @@ class Answer(models.Model):
         blank=True, null=True,
     )
 
+    def __str__(self):
+        return self.odp
     class Meta:
         verbose_name_plural = "Odpowiedź"
 
@@ -106,7 +116,24 @@ class GaleryImage(models.Model):
         blank=True,
         null=True
     )
-
+    def __str__(self):
+        return self.tytul
     class Meta:
         verbose_name_plural = "Galeria"
+        ordering = ['-date']
+
+class QuestionImage(models.Model):
+    tytul = models.CharField(max_length=255)
+    obraz = models.ImageField(upload_to="images/szkolenie/galeria")
+    date = models.DateTimeField(auto_now_add=True)
+    pytanie = models.ForeignKey(
+        Question, 
+        on_delete=models.CASCADE,
+        blank=True,
+        null=True
+    )
+    def __str__(self):
+        return self.tytul
+    class Meta:
+        verbose_name_plural = "Galeria pytan"
         ordering = ['-date']

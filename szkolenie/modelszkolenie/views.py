@@ -1,14 +1,11 @@
-from .serializers import CompanySerializer, UserSerializer, TrainingSerializer
+from .serializers import CompanySerializer, UserSerializer
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, logout, authenticate
-from django.http import Http404
-from .models import Company, User, Training
-from rest_framework import generics, permissions, status, mixins
-from rest_framework.response import Response
-from rest_framework.views import APIView
-# Rest Framework ViewSets
+from .models import Company, User
+from rest_framework import generics
 
+# Rest Framework ViewSets
 
 # Create your views here.
 def home(request):

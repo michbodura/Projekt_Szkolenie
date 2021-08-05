@@ -42,8 +42,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='answer',
             name='odp',
-            field=models.TextField(default=datetime.datetime(2021, 8, 5, 12, 6, 5, 83709, tzinfo=utc)),
-            preserve_default=False,
+            field=models.TextField(),
         ),
         migrations.AddField(
             model_name='training',
