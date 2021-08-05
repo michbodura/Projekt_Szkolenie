@@ -326,16 +326,16 @@
 										"$ref": "AAAAAAF7EKjPU51d2NQ="
 									},
 									"font": "Arial;13;0",
-									"left": 781,
+									"left": 768,
 									"top": 248,
 									"width": 7.22998046875,
 									"height": 13,
-									"alpha": 0.5235987755982988,
-									"distance": 25,
+									"alpha": 0.34184820446268915,
+									"distance": 37.64306044943742,
 									"hostEdge": {
 										"$ref": "AAAAAAF7EKjPVJ1fFXM="
 									},
-									"text": "1"
+									"text": "*"
 								},
 								{
 									"_type": "UMLQualifierCompartmentView",
@@ -2461,9 +2461,9 @@
 										"$ref": "AAAAAAF7EK7VyqqYIfg="
 									},
 									"font": "Arial;13;0",
-									"left": 627,
+									"left": 626,
 									"top": 566,
-									"width": 5.05908203125,
+									"width": 6.5,
 									"height": 13,
 									"alpha": 0.5235987755982988,
 									"distance": 25,
@@ -2902,9 +2902,9 @@
 										"$ref": "AAAAAAF7EK9rX6z/nnA="
 									},
 									"font": "Arial;13;0",
-									"left": 684,
+									"left": 683,
 									"top": 414,
-									"width": 5.05908203125,
+									"width": 6.5,
 									"height": 13,
 									"alpha": -0.5235987755982988,
 									"distance": 25,
@@ -3177,9 +3177,9 @@
 										"$ref": "AAAAAAF7EK+42K5Sqtw="
 									},
 									"font": "Arial;13;0",
-									"left": 698,
+									"left": 697,
 									"top": 309,
-									"width": 5.05908203125,
+									"width": 6.5,
 									"height": 13,
 									"alpha": -0.5235987755982988,
 									"distance": 25,
@@ -3239,9 +3239,9 @@
 										"$ref": "AAAAAAF7EK+42K5TdPI="
 									},
 									"font": "Arial;13;0",
-									"left": 787,
+									"left": 786,
 									"top": 284,
-									"width": 5.05908203125,
+									"width": 6.5,
 									"height": 13,
 									"alpha": 0.5235987755982988,
 									"distance": 25,
@@ -3586,7 +3586,7 @@
 										"reference": {
 											"$ref": "AAAAAAF7EKeaypzyJU4="
 										},
-										"multiplicity": "1"
+										"multiplicity": "*"
 									}
 								}
 							],

@@ -31,6 +31,7 @@ class User(models.Model):
 
     firma = models.ForeignKey(
         Company, 
+        related_name='companies',
         on_delete=models.CASCADE,
         blank=True, null=True,
     )
