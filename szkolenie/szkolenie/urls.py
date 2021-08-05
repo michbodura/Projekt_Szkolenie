@@ -18,9 +18,18 @@ from django.urls import path,include
 from modelszkolenie import views
 
 urlpatterns = [
+
+    # Admin
     path('admin/', admin.site.urls),
     
     # Linki
     path('',views.home, name='home'),
-    path('login/',views.login)
+    path('login/',views.login),
+
+    # Linki do api restframework
+    path('api/company', views.CompanyList.as_view()),
+    path('api/user', views.UserList.as_view()),
+    path('api/training', views.TrainingList.as_view()),
+    # path('api-auth/', include('rest_framework.urls')),
 ]
+
