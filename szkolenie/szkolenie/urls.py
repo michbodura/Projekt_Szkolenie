@@ -32,7 +32,6 @@ urlpatterns = [
     path('api/company/<int:pk>', views.CompanyDetail.as_view()),
     path('api/user/', views.UserList.as_view()),
     path('api/user/<int:pk>', views.UserDetail.as_view()),
-    path('api/training', views.TrainingList.as_view()),
     # path('api-auth/', include('rest_framework.urls')),
 ]
 

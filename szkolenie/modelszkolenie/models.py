@@ -1,6 +1,9 @@
 from django.db import models
 from django.db.models.base import ModelState
 from django.utils.translation import gettext_lazy as _
+from pygments.lexers import get_lexer_by_name
+from pygments.formatters.html import HtmlFormatter
+from pygments import highlight
 
 # Create your models here.
 
@@ -35,12 +38,30 @@ class User(models.Model):
         on_delete=models.CASCADE,
         blank=True, null=True,
     )
+    owner = models.ForeignKey(
+        'auth.User', 
+        related_name='users', 
+        on_delete=models.CASCADE,
+        blank=True,
+        null=True
+    )
+    highlighted = models.TextField(null=True)
 
 
 
 
     class Meta:
         verbose_name_plural="Gość"
+    
+    def save(self, *args, **kwargs):
+
+        lexer = get_lexer_by_name(self.language)
+        linenos = 'table' if self.linenos else False
+        options = {'title': self.title} if self.title else {}
+        formatter = HtmlFormatter(style=self.style, linenos=linenos,
+                                full=True, **options)
+        self.highlighted = highlight(self.code, lexer, formatter)
+        super(User, self).save(*args, **kwargs)
 
 class Training(models.Model):
     nazwa = models.CharField(max_length=100)
