@@ -19,8 +19,8 @@ class Company(models.Model):
         return self.nazwa
 
 class Language(models.TextChoices):
-    ENGLISH = 'EN', _('English')
-    POLISH = 'PL', _('Polish')
+    ENGLISH = 'EN', _('Angielski')
+    POLISH = 'PL', _('Polski')
 
 
 class User(models.Model):
@@ -28,7 +28,7 @@ class User(models.Model):
     imie = models.CharField(max_length=30)
     nazwisko = models.CharField(max_length=30)
     email = models.EmailField()
-    nrDowodu = models.CharField(max_length=15,null=True)
+    nrDowodu = models.CharField(max_length=26,null=True)
     jezyk = models.CharField(
         max_length=2,
         choices=Language.choices,
@@ -53,7 +53,7 @@ class Training(models.Model):
     nazwa = models.CharField(max_length=255)
     poczatek = models.DateField(blank=True, null=True)
    
-    czas = models.DurationField(datetime.timedelta(days=1),name="czas")
+    czas = models.DurationField(verbose_name="czas")
     obraz = models.ImageField(upload_to="images/szkolenie")
     
     jezyk = models.CharField(
@@ -70,10 +70,13 @@ class Training(models.Model):
     def __str__(self):
         return self.nazwa
 
+  
+    @property
     def expiration_date(self):
-        print(self.poczatek + self.czas)
         return (self.poczatek + self.czas)
+
     
+
 
 
 

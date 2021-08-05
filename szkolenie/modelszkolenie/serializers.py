@@ -12,7 +12,6 @@ class CompanySerializer(serializers.ModelSerializer):
     users = UserSerializer(many=True, read_only=True)
     class Meta:
         model = Company
-        depth = 1
         fields = ['id', 'nazwa','adres', 'users']
 
 class TrainingSerializer(serializers.ModelSerializer):
