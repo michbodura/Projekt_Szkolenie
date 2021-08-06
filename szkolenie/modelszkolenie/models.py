@@ -9,14 +9,12 @@ class Company(models.Model):
 
     class Meta: 
         verbose_name_plural = "Firma"
-    
     def __str__(self):
         return self.nazwa
 
 class Language(models.TextChoices):
     ENGLISH = 'EN', _('Angielski')
     POLISH = 'PL', _('Polski')
-
 
 class User(models.Model):
     
@@ -63,10 +61,6 @@ class Training(models.Model):
     def __str__(self):
         return self.nazwa
 
-  
-
-
-    
 class Question(models.Model):
     tresc = models.TextField()
     jezyk = models.CharField(
@@ -88,7 +82,6 @@ class Answer(models.Model):
         on_delete=models.CASCADE,
         blank=True, null=True,
     )
-
     def __str__(self):
         return self.odp
     class Meta:

@@ -10,7 +10,6 @@ class QuestionAdmin(admin.ModelAdmin):
 class TrainingAdmin(admin.ModelAdmin):
     fields = ['nazwa','czas','obowiazkowe','jezyk','uczestnicy']
     list_display = ['nazwa','czas','obowiazkowe','jezyk']
-
     def czas(self, obj: Training) -> str:
         return obj.czas
 
@@ -25,24 +24,19 @@ class CompanyAdmin(admin.ModelAdmin):
     list_display = ['nazwa','adres']
 
 class UserAdmin(admin.ModelAdmin):
-    
     fields = ['imie','nazwisko','email','nrDowodu','jezyk','firma']
     list_display = ['firma','imie', 'nazwisko','email','nrDowodu']
 
 class CompletedTrainingAdmin(admin.ModelAdmin):
-    
     readonly_fields = ["expiration_date"]
     list_display = ['expiration_date', 'osoba','szkolenie']
-
     def expiration_date(self, obj: CompletedTraining) -> str:
         return obj.expiration_date
 
 class GaleryImageAdmin(admin.ModelAdmin):
-    
     list_display = ["id","tytul","date","szkolenie"]
 
 class QuestionImageAdmin(admin.ModelAdmin):
-    
     list_display = ["tytul","date"]
 
 admin.site.register(User, UserAdmin)

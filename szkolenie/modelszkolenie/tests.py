@@ -67,7 +67,6 @@ class UserTestCase(TestCase):
     
 
 class CompanyTestCase(TestCase):
-    
     def test_ifNotEquals(self):
         company1 = Company.objects.create(nazwa="IU Technology", adres="Dubois 114/116")
         company2 = Company.objects.create(nazwa="IU Technology", adres="Dubois 112")
