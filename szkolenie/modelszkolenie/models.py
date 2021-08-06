@@ -1,11 +1,5 @@
 from django.db import models
-from django.db.models.base import ModelState
 from django.utils.translation import gettext_lazy as _
-from pygments.lexers import get_lexer_by_name
-from pygments.formatters.html import HtmlFormatter
-from pygments import highlight
-import datetime
-
 # Create your models here.
 
 class Company(models.Model):
@@ -53,6 +47,7 @@ class Training(models.Model):
     nazwa = models.CharField(max_length=255)
     poczatek = models.DateField(blank=True, null=True)
     czas = models.DurationField(verbose_name="czas")
+    obowiazkowe = models.BooleanField(default=False)
     
     jezyk = models.CharField(
         max_length=2,
@@ -72,6 +67,7 @@ class Training(models.Model):
     @property
     def expiration_date(self):
         return (self.poczatek + self.czas)
+
 
     
 class Question(models.Model):
