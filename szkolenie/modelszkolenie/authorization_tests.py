@@ -13,3 +13,4 @@ class AuthUserTestCase(TestCase):
         permission = superuser.has_perm('auth.change_user')
         self.assertTrue(permission,"Nie jestes adminem")
 
+    
