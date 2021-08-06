@@ -16,7 +16,12 @@ class UserTestCase(TestCase):
         user1 = User.objects.get(imie2="Michal")
         user2 = User.objects.get(email2="piotr.nowak@iutechnology.pl")
     
+    def ifPiotrNowakExists(self):
+        User.objects.create(imie="Piotr", nazwisko="Nowak")
+        ex1 = User.objects.get(imie="Piotr", nazwisko="Nowak")
+
     
+
 
 
 # Create your tests here.
