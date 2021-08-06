@@ -8,7 +8,7 @@ class QuestionAdmin(admin.ModelAdmin):
     list_display = ['id','tresc','jezyk']
 
 class TrainingAdmin(admin.ModelAdmin):
-    fields = ['nazwa','czas','obowiazkowe','jezyk','uczestnicy']
+    fields = ['nazwa','czas','obowiazkowe','jezyk']
     list_display = ['nazwa','czas','obowiazkowe','jezyk']
     def czas(self, obj: Training) -> str:
         return obj.czas
@@ -29,11 +29,13 @@ class UserAdmin(admin.ModelAdmin):
 
 class CompletedTrainingAdmin(admin.ModelAdmin):
     readonly_fields = ["expiration_date"]
-    list_display = ['expiration_date', 'osoba','szkolenie']
+    list_display = ['osoba', 'expiration_date', 'szkolenie']
 
     def expiration_date(self, obj: CompletedTraining) -> str:
         return obj.expiration_date
     expiration_date.short_description = 'Data wygaśnięcia'
+
+
 
 class GaleryImageAdmin(admin.ModelAdmin):
     list_display = ["id","tytul","date","szkolenie"]

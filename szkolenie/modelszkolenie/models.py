@@ -58,7 +58,7 @@ class Training(models.Model):
         null=True,
         verbose_name="Język"
     )
-    uczestnicy = models.ManyToManyField(User, blank=True)
+    uczestnicy = models.ManyToManyField(User,through='CompletedTraining', blank=True)
 
     class Meta:
         verbose_name_plural="Szkolenie"

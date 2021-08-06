@@ -1,6 +1,6 @@
-from .serializers import CompanySerializer, UserSerializer
+from .serializers import CompanySerializer, UserSerializer, TrainingSerializer
 from django.shortcuts import render
-from .models import Company, User
+from .models import Company,  User, Training
 from rest_framework import generics
 
 # Rest Framework ViewSets
@@ -24,3 +24,15 @@ class UserList(generics.ListCreateAPIView):
 class UserDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
+
+class TrainingList(generics.ListCreateAPIView):
+    queryset = Training.objects.all()
+    serializer_class = TrainingSerializer
+
+class TrainingDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Training.objects.all()
+    serializer_class = TrainingSerializer
+
+class UserTrainingsDetail(generics.ListAPIView):
+    queryset = Training.objects.filter(pk=8)
+    serializer_class = TrainingSerializer
