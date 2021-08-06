@@ -12,11 +12,7 @@ class TrainingAdmin(admin.ModelAdmin):
 class AnswerAdmin(admin.ModelAdmin):
     fields = ['odp','isCorrect','pytanie']
 
-class GaleryImageAdmin(admin.ModelAdmin):
-    fields = ['tytul','obraz','date','szkolenie']
 
-class QuestionImageAdmin(admin.ModelAdmin):
-    fields = ['tytul','obraz','date','pytanie']
 
 class CompanyAdmin(admin.ModelAdmin):
     fields = ['nazwa','adres']
@@ -29,8 +25,8 @@ admin.site.register(Company, CompanyAdmin)
 admin.site.register(Training,TrainingAdmin)
 admin.site.register(Question, QuestionAdmin)
 admin.site.register(Answer,AnswerAdmin)
-admin.site.register(GaleryImage,GaleryImageAdmin)
-admin.site.register(QuestionImage,QuestionImageAdmin)
+admin.site.register(GaleryImage)
+admin.site.register(QuestionImage)
 
 
 

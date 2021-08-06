@@ -1,5 +1,7 @@
 from django.test import TestCase
 from modelszkolenie.models import Company, User
+from django.contrib.admin.sites import AdminSite
+
 
 class UserTestCase(TestCase):
     def setUp(self):
@@ -40,14 +42,18 @@ class UserTestCase(TestCase):
         user2 = User.objects.create(imie="Michal", nazwisko="Bodura",email="michal_bodura@iutechnology.pl", nrDowodu="CDJ757557", jezyk="EN")
         self.assertNotEquals(user1,user2,"Istnieje redundacja w bazie, prosze to zweryfikowac")
 
+
+    
     
 
 class CompanyTestCase(TestCase):
+    
     def test_ifNotEquals(self):
         company1 = Company.objects.create(nazwa="IU Technology", adres="Dubois 114/116")
         company2 = Company.objects.create(nazwa="IU Technology", adres="Dubois 112")
         self.assertNotEquals(company1,company2)
     
+  
 
 class AuthUserTestCase(TestCase):
     def test_ifCanChangeUser(self):
