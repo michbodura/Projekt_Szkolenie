@@ -30,9 +30,11 @@ class UserAdmin(admin.ModelAdmin):
 class CompletedTrainingAdmin(admin.ModelAdmin):
     readonly_fields = ["expiration_date"]
     list_display = ['expiration_date', 'osoba','szkolenie']
+
     def expiration_date(self, obj: CompletedTraining) -> str:
         return obj.expiration_date
-
+    expiration_date.short_description = 'Data wygaśnięcia'
+    
 class GaleryImageAdmin(admin.ModelAdmin):
     list_display = ["id","tytul","date","szkolenie"]
 
