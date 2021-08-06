@@ -49,8 +49,10 @@ class CompanyTestCase(TestCase):
         self.assertNotEquals(company1,company2)
     
 
-
-
+class AuthUserTestCase(TestCase):
+    def test_ifCanChangeUser(self):
+        userAdm = User.objects.get(username='user')
+        self.assertTrue(userAdm.has_perm('auth.change_user'))
 
 
 # Create your tests here.
