@@ -1,8 +1,6 @@
 from django.test import TestCase
-from modelszkolenie.models import Company, User
-from django.contrib.admin.sites import AdminSite
-
-
+from modelszkolenie.models import Company, User, Training
+import datetime
 class UserTestCase(TestCase):
     def setUp(self):
         User.objects.create(imie="Michal", nazwisko="Bodura")
@@ -17,9 +15,11 @@ class UserTestCase(TestCase):
     
     # Sprawdzanie nazwy atrybutu - bledna nazwa atrybutu
     def test_attributes2(self):
-        user1 = User.objects.get(imie2="Michal")
-        user2 = User.objects.get(email2="piotr.nowak@iutechnology.pl")
-    
+        user1 = User.objects.get(imie="Michal")
+        user2 = User.objects.get(email="piotr.nowak@iutechnology.pl")
+        queryset = [user1, user2]
+        self.assertTrue(queryset,"Cos nie poszlo z atrybutami")
+
     def test_ifPiotrNowakExists(self):
         User.objects.create(imie="Piotr", nazwisko="Nowak")
         ex1 = User.objects.get(imie="Piotr", nazwisko="Nowak")
@@ -42,6 +42,12 @@ class UserTestCase(TestCase):
         user2 = User.objects.create(imie="Michal", nazwisko="Bodura",email="michal_bodura@iutechnology.pl", nrDowodu="CDJ757557", jezyk="EN")
         self.assertNotEquals(user1,user2,"Istnieje redundacja w bazie, prosze to zweryfikowac")
 
+    # Sprawdzam typ zmiennej
+    def test_type(self):
+        User.objects.create(imie="Piotr", nazwisko="Nowak")
+        ex1 = User.objects.get(imie="Piotr", nazwisko="Nowak")
+        self.assertEqual(ex1.imie + " " + ex1.nazwisko, 'Piotr Nowak')
+        
 
     
     
@@ -52,13 +58,13 @@ class CompanyTestCase(TestCase):
         company1 = Company.objects.create(nazwa="IU Technology", adres="Dubois 114/116")
         company2 = Company.objects.create(nazwa="IU Technology", adres="Dubois 112")
         self.assertNotEquals(company1,company2)
-    
-  
 
-class AuthUserTestCase(TestCase):
-    def test_ifCanChangeUser(self):
-        userAdm = User.objects.get(username='user')
-        self.assertTrue(userAdm.has_perm('auth.change_user'))
+
+class TrainingTestCase(TestCase):
+    def test_ifTrainingStartsSeptember(self):
+        d = datetime.date(2021,8,21)
+        training = Training.objects.create(nazwa="Testowe szkolenie", date=d)
+        self.assertGreater(training.expiration_date(),"Szkolenia dostepne od 1 wrzesnia")
 
 
 # Create your tests here.

@@ -25,8 +25,6 @@ urlpatterns = [
     
     # Linki
     path('',views.home, name='home'),
-    path('login/',views.login),
-
     # Linki do api restframework
     path('api/company', views.CompanyList.as_view()),
     path('api/company/<int:pk>', views.CompanyDetail.as_view()),
