@@ -21,7 +21,10 @@ class QuestionImageAdmin(admin.ModelAdmin):
 class CompanyAdmin(admin.ModelAdmin):
     fields = ['nazwa','adres']
 
-admin.site.register(User)
+class UserAdmin(admin.ModelAdmin):
+    fields = ['imie','nazwisko','email','nrDowodu','jezyk','firma']
+
+admin.site.register(User, UserAdmin)
 admin.site.register(Company, CompanyAdmin)
 admin.site.register(Training,TrainingAdmin)
 admin.site.register(Question, QuestionAdmin)
