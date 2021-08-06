@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Company,  User, Training
+from .models import Company, CompletedTraining,  User, Training
 
 class UserSerializer(serializers.ModelSerializer):
 
@@ -20,7 +20,14 @@ class TrainingSerializer(serializers.ModelSerializer):
         model = Training
         fields = ['id', 'nazwa','czas','uczestnicy']
 
+class CompletedTraningSerializer(serializers.ModelSerializer):
+    get_expiration_date = serializers.SerializerMethodField()
 
+    class Meta:
+        model = CompletedTraining
+        exclude = ["osoba","szkolenie"]
 
+    def get_expiration_date(self, obj):
+        return obj.expiration_date
 
 

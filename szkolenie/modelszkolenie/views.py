@@ -1,6 +1,6 @@
-from .serializers import CompanySerializer, UserSerializer, TrainingSerializer
+from .serializers import CompanySerializer, CompletedTraningSerializer, UserSerializer, TrainingSerializer
 from django.shortcuts import render
-from .models import Company,  User, Training
+from .models import Company, CompletedTraining,  User, Training
 from rest_framework import generics
 
 # Rest Framework ViewSets
@@ -33,6 +33,11 @@ class TrainingDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Training.objects.all()
     serializer_class = TrainingSerializer
 
-class UserTrainingsDetail(generics.ListAPIView):
-    queryset = Training.objects.filter(pk=8)
-    serializer_class = TrainingSerializer
+class TrainingUserList(generics.ListAPIView):
+    serializer_class = CompletedTraningSerializer
+
+    def get_queryset(self):
+        uczestnik = User.objects.get(pk=self.kwargs['pk'])
+        return CompletedTraining.objects.filter(osoba=uczestnik)
+
+    
