@@ -46,7 +46,6 @@ class User(models.Model):
     
 class Training(models.Model):
     nazwa = models.CharField(max_length=255)
-    poczatek = models.DateField(blank=True, null=True)
     czas = models.DurationField(verbose_name="czas")
     obowiazkowe = models.BooleanField(default=False)
     
@@ -65,9 +64,6 @@ class Training(models.Model):
         return self.nazwa
 
   
-    @property
-    def expiration_date(self):
-        return (self.poczatek + self.czas)
 
 
     
@@ -79,7 +75,8 @@ class Question(models.Model):
         blank=True,
         null=True
     )
-
+    def __str__(self):
+        return str(self.id)
     class Meta:
         verbose_name_plural="Pytanie"
 
@@ -127,5 +124,16 @@ class QuestionImage(models.Model):
     def __str__(self):
         return self.tytul
     class Meta:
-        verbose_name_plural = "Galeria pytan"
+        verbose_name_plural = "Galeria pytan na szkoleniu"
         ordering = ['-date']
+
+class CompletedTraining(models.Model):
+    osoba = models.ForeignKey(User, on_delete=models.CASCADE)
+    szkolenie = models.ForeignKey(Training, on_delete=models.CASCADE)
+    data_ukonczenia = models.DateField(blank=True, null=True)
+
+    @property
+    def expiration_date(self):
+        return (self.data_ukonczenia + self.szkolenie.czas)
+    class Meta:
+        verbose_name_plural = "Ukonczone szkolenia"

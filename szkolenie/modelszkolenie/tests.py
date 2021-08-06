@@ -1,6 +1,20 @@
-from django.test import TestCase
+from django.test import TestCase, SimpleTestCase
+from django.apps.registry import Apps
+from django.db import models
 from modelszkolenie.models import Company, User, Training
 import datetime
+
+
+class TestModelDefinition(SimpleTestCase):
+    def test_model_definition(self):
+        test_apps = Apps(['modelszkolenie'])
+
+        class TestModel(models.Model):
+            class Meta:
+                apps = test_apps
+        
+        self.assertNull()
+
 class UserTestCase(TestCase):
     def setUp(self):
         User.objects.create(imie="Michal", nazwisko="Bodura")
@@ -62,9 +76,8 @@ class CompanyTestCase(TestCase):
 
 class TrainingTestCase(TestCase):
     def test_ifTrainingStartsSeptember(self):
-        d = datetime.date(2021,8,21)
+        d = datetime.date.today()
         training = Training.objects.create(nazwa="Testowe szkolenie", date=d)
-        self.assertGreater(training.expiration_date(),"Szkolenia dostepne od 1 wrzesnia")
-
+        print(d)
 
 # Create your tests here.
