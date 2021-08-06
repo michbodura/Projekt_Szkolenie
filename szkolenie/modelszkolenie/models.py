@@ -52,9 +52,7 @@ class User(models.Model):
 class Training(models.Model):
     nazwa = models.CharField(max_length=255)
     poczatek = models.DateField(blank=True, null=True)
-   
     czas = models.DurationField(verbose_name="czas")
-    obraz = models.ImageField(upload_to="images/szkolenie")
     
     jezyk = models.CharField(
         max_length=2,
@@ -76,20 +74,14 @@ class Training(models.Model):
         return (self.poczatek + self.czas)
 
     
-
-
-
-
 class Question(models.Model):
     tresc = models.TextField()
-    obraz = models.ImageField()
     jezyk = models.CharField(
         max_length=2,
         choices=Language.choices,
         blank=True,
         null=True
     )
-
 
     class Meta:
         verbose_name_plural="Pytanie"
@@ -122,12 +114,12 @@ class GaleryImage(models.Model):
     def __str__(self):
         return self.tytul
     class Meta:
-        verbose_name_plural = "Galeria"
+        verbose_name_plural = "Galeria ze szkolenia"
         ordering = ['-date']
 
 class QuestionImage(models.Model):
     tytul = models.CharField(max_length=255)
-    obraz = models.ImageField(upload_to="images/szkolenie/galeria")
+    obraz = models.ImageField(upload_to="images/pytanie/galeria")
     date = models.DateTimeField(auto_now_add=True)
     pytanie = models.ForeignKey(
         Question, 
