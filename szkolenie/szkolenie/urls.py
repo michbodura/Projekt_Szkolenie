@@ -22,7 +22,6 @@ urlpatterns = [
 
     # Admin
     path('admin/', admin.site.urls),
-    
     # Linki
     path('',views.home, name='home'),
     # Linki do api restframework

@@ -4,6 +4,7 @@ from django.utils.translation import gettext_lazy as _
 # Create your models here.
 
 class Company(models.Model):
+    
     nazwa = models.CharField(max_length=60)
     adres = models.CharField(max_length=120)
 
@@ -13,6 +14,7 @@ class Company(models.Model):
         return self.nazwa
 
 class Language(models.TextChoices):
+
     ENGLISH = 'EN', _('Angielski')
     POLISH = 'PL', _('Polski')
 
@@ -43,6 +45,7 @@ class User(models.Model):
         verbose_name_plural="Gość"
     
 class Training(models.Model):
+    
     nazwa = models.CharField(max_length=255)
     czas = models.DurationField(verbose_name="czas")
     obowiazkowe = models.BooleanField(default=False)
@@ -62,6 +65,7 @@ class Training(models.Model):
         return self.nazwa
 
 class Question(models.Model):
+
     tresc = models.TextField()
     jezyk = models.CharField(
         max_length=2,
@@ -75,6 +79,7 @@ class Question(models.Model):
         verbose_name_plural="Pytanie"
 
 class Answer(models.Model):
+
     odp = models.TextField()
     isCorrect = models.BooleanField(default=False)
     pytanie = models.ForeignKey(
@@ -105,6 +110,7 @@ class GaleryImage(models.Model):
         ordering = ['-date']
 
 class QuestionImage(models.Model):
+
     tytul = models.CharField(max_length=255)
     obraz = models.ImageField(upload_to="images/pytanie/galeria")
     date = models.DateTimeField(auto_now_add=True)
@@ -121,6 +127,7 @@ class QuestionImage(models.Model):
         ordering = ['-date']
 
 class CompletedTraining(models.Model):
+
     osoba = models.ForeignKey(User, on_delete=models.CASCADE)
     szkolenie = models.ForeignKey(Training, on_delete=models.CASCADE)
     data_ukonczenia = models.DateField(blank=True, null=True)

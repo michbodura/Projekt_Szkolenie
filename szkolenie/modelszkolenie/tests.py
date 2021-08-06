@@ -6,6 +6,7 @@ import datetime
 
 
 class TestModelDefinition(SimpleTestCase):
+    
     def test_model_definition(self):
         test_apps = Apps(['modelszkolenie'])
 
@@ -16,6 +17,7 @@ class TestModelDefinition(SimpleTestCase):
         self.assertNull()
 
 class UserTestCase(TestCase):
+
     def setUp(self):
         User.objects.create(imie="Michal", nazwisko="Bodura")
         User.objects.create(email="piotr.nowak@iutechnology.pl")
@@ -67,6 +69,7 @@ class UserTestCase(TestCase):
     
 
 class CompanyTestCase(TestCase):
+
     def test_ifNotEquals(self):
         company1 = Company.objects.create(nazwa="IU Technology", adres="Dubois 114/116")
         company2 = Company.objects.create(nazwa="IU Technology", adres="Dubois 112")
@@ -74,6 +77,7 @@ class CompanyTestCase(TestCase):
 
 
 class TrainingTestCase(TestCase):
+
     def test_ifTrainingStartsSeptember(self):
         d = datetime.date.today()
         training = Training.objects.create(nazwa="Testowe szkolenie", date=d)
