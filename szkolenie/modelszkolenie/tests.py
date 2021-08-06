@@ -10,6 +10,8 @@ class UserTestCase(TestCase):
     def test_attributes(self):
         user1 = User.objects.get(imie="Michal")
         user2 = User.objects.get(email="piotr.nowak@iutechnology.pl")
+        queryset = [user1, user2]
+        self.assertTrue(queryset,"Cos nie poszlo z atrybutami")
     
     # Sprawdzanie nazwy atrybutu - bledna nazwa atrybutu
     def test_attributes2(self):
@@ -31,12 +33,12 @@ class UserTestCase(TestCase):
     def test_ifUsersEquals_one(self):
         user1 = User.objects.create(imie="Michal", nazwisko="Bodura")
         user2 = User.objects.create(imie="Michal", nazwisko="Bodura")
-        self.assertEquals(user1,user2)
+        self.assertEquals(user1,user2,"Nie sa rowne")
      # True
     def test_ifUsersNotEquals(self):
         user1 = User.objects.create(imie="Michal", nazwisko="Bodura",email="michal_bodura@iutechnology.pl", nrDowodu="CDJ757557", jezyk="EN")
         user2 = User.objects.create(imie="Michal", nazwisko="Bodura",email="michal_bodura@iutechnology.pl", nrDowodu="CDJ757557", jezyk="EN")
-        self.assertNotEquals(user1,user2)
+        self.assertNotEquals(user1,user2,"Istnieje redundacja w bazie, prosze to zweryfikowac")
 
     
 
