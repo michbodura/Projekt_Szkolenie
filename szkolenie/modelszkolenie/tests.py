@@ -19,10 +19,13 @@ class UserTestCase(TestCase):
     def test_ifPiotrNowakExists(self):
         User.objects.create(imie="Piotr", nazwisko="Nowak")
         ex1 = User.objects.get(imie="Piotr", nazwisko="Nowak")
+        self.assertTrue(ex1,"Nie ma Piotra Nowaka na liscie")
 
-    def test_ifMichalInTraining(self):
-        self.UserTestCase.setUp()
+    def test_ifMichalIsInList(self):
+        user1 = User.objects.create(imie="Michal", nazwisko="Bodura")
+        user2 = User.objects.create(imie="Michal", nazwisko="Bodura")
         queryset = User.objects.filter(imie="Michal")
+        self.assertTrue(queryset,"Nie ma uzytkownika o imieniu Michal na liscie")
 
     # False
     def test_ifUsersEquals_one(self):
@@ -34,6 +37,8 @@ class UserTestCase(TestCase):
         user1 = User.objects.create(imie="Michal", nazwisko="Bodura",email="michal_bodura@iutechnology.pl", nrDowodu="CDJ757557", jezyk="EN")
         user2 = User.objects.create(imie="Michal", nazwisko="Bodura",email="michal_bodura@iutechnology.pl", nrDowodu="CDJ757557", jezyk="EN")
         self.assertNotEquals(user1,user2)
+
+    
 
 class CompanyTestCase(TestCase):
     def test_ifNotEquals(self):
