@@ -141,3 +141,5 @@ class CompletedTraining(models.Model):
 
     class Meta:
         verbose_name_plural = "Ukonczone szkolenia"
+
+    
