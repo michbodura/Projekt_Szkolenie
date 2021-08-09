@@ -142,4 +142,4 @@ GRAPH_MODELS = {
 try:
     from .local_settings import *
 except ImportError:
-    print("Nie wida pliku lokalnego.")
+    print("Nie widac pliku lokalnego.")
