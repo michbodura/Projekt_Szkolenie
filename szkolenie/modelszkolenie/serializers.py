@@ -5,7 +5,7 @@ class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ['id','imie','nazwisko','email','nrDowodu','jezyk']
+        fields = ['id','imie','nazwisko','email','nrDowodu','jezyk','firma']
 
 class CompanySerializer(serializers.ModelSerializer):
 
@@ -21,13 +21,17 @@ class TrainingSerializer(serializers.ModelSerializer):
         fields = ['id', 'nazwa','czas','uczestnicy']
 
 class CompletedTraningSerializer(serializers.ModelSerializer):
-    get_expiration_date = serializers.SerializerMethodField()
+    expiration_date = serializers.SerializerMethodField()
 
     class Meta:
         model = CompletedTraining
-        exclude = ["osoba","szkolenie"]
+        fields = ["osoba","szkolenie","data_ukonczenia","expiration_date"]
 
     def get_expiration_date(self, obj):
         return obj.expiration_date
 
+
+    
+
+    
 
