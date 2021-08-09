@@ -1,5 +1,6 @@
 from django.contrib import admin
-
+from django.contrib.admin import AdminSite
+from django.contrib.auth.models import User as AuthUser, Group
 from .models import User, Company, GaleryImage, Answer, Training, Question, QuestionImage, CompletedTraining
 # Register your models here.
 
@@ -43,11 +44,22 @@ class GaleryImageAdmin(admin.ModelAdmin):
 class QuestionImageAdmin(admin.ModelAdmin):
     list_display = ["tytul","date"]
 
-admin.site.register(User, UserAdmin)
-admin.site.register(Company, CompanyAdmin)
-admin.site.register(Training,TrainingAdmin)
-admin.site.register(Question, QuestionAdmin)
-admin.site.register(Answer,AnswerAdmin)
-admin.site.register(GaleryImage,GaleryImageAdmin)
-admin.site.register(QuestionImage, QuestionImageAdmin)
-admin.site.register(CompletedTraining,CompletedTrainingAdmin)
+class MyAdminSite(AdminSite):
+    site_header = 'Panel administracyjny do obsługi szkoleń'
+    site_title = 'Portal administracyjny do obsługi szkoleń'
+    index_title = 'Witamy w panelu administracyjnym do obsługi szkoleń'
+
+
+admin_site = MyAdminSite(name='admin')
+    
+admin_site.register(User, UserAdmin)
+admin_site.register(Company, CompanyAdmin)
+admin_site.register(Training,TrainingAdmin)
+admin_site.register(Question, QuestionAdmin)
+admin_site.register(Answer,AnswerAdmin)
+admin_site.register(GaleryImage,GaleryImageAdmin)
+admin_site.register(QuestionImage, QuestionImageAdmin)
+admin_site.register(CompletedTraining,CompletedTrainingAdmin)
+admin_site.register(AuthUser)
+admin_site.register(Group)
+
