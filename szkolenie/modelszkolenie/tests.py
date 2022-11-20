@@ -62,7 +62,7 @@ class UserTestCase(TestCase):
     def test_type(self):
         User.objects.create(imie="Piotr", nazwisko="Nowak")
         ex1 = User.objects.get(imie="Piotr", nazwisko="Nowak")
-        self.assertEqual(ex1.imie + " " + ex1.nazwisko, 'Piotr Nowak')
+        self.assertEqual(f"{ex1.imie} {ex1.nazwisko}", 'Piotr Nowak')
         
 class CompanyTestCase(TestCase):
 

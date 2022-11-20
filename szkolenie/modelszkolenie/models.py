@@ -40,7 +40,7 @@ class User(models.Model):
     )
 
     def __str__(self):
-        return self.imie + " " + self.nazwisko
+        return f"{self.imie} {self.nazwisko}"
 
     class Meta:
         verbose_name_plural="Gość"
